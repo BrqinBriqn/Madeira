@@ -34,3 +34,18 @@ jobs:
             -configuration Release \
             -sdk iphonesimulator \
             build
+
+      - name: Archive
+        run: |
+          xcodebuild archive \
+            -workspace YourApp.xcworkspace \
+            -scheme YourApp \
+            -archivePath build/YourApp.xcarchive
+
+      - name: Export IPA
+        run: |
+          xcodebuild -exportArchive \
+            -archivePath build/YourApp.xcarchive \
+            -exportOptionsPlist ExportOptions.plist \
+            -exportPath build
+
